@@ -1,0 +1,16 @@
+.homeScreen {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+    button {
+        background-color: #4CAF50;
+        border-radius: 4px;
+        border: none;
+        color: white;
+        height: 50px;
+        margin: 8px;
+        text-align: left;
+        width: 200px;
+    }
+}

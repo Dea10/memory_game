@@ -1,0 +1,19 @@
+.button {
+    align-items: center;
+    // background-color: #FF5054;
+    background-color: #4CC0A6;
+    border-radius: 4px;
+    // border: red 1px solid;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 50px;
+    margin: 20px;
+    width: 200px;
+    
+    span {
+        margin-left: 5%;
+    }
+}
