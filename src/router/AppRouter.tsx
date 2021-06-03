@@ -5,7 +5,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import GameScreen from '../components/GameScreen';
+import GameScreen from '../components/Game/GameScreen';
 import HomeScreen from '../components/Home/HomeScreen';
 import LoginScreen from '../components/LoginScreen';
 import RankingScreen from '../components/RankingScreen';
