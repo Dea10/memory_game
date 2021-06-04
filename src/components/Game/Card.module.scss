@@ -1,16 +1,19 @@
 .card {
-    align-items: center;
-    border: black 1px solid;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 2px;
-    padding: 4px;
-    min-width: 18%;
-
-    img {
-        border-bottom: black 1px solid;
-        margin-bottom: 8px;
+    div {
+        align-items: center;
+        border: black 1px solid;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 2px;
+        padding: 4px;
+        width: 125px;
+        height: 125px;    
+    
+        img {
+            border-bottom: black 1px solid;
+            margin-bottom: 8px;
+        }
     }
 }
