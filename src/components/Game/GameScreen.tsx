@@ -3,6 +3,10 @@ import { getRandomArray } from '../helpers/getRandomArray';
 import Card from './Card';
 import styles from './GameScreen.module.scss';
 
+export type card = {
+
+};
+
 const GameScreen = () => {
     const randomSprites = getRandomArray();
     const duplicatedRandomSprites = [...randomSprites, ...randomSprites];
@@ -22,27 +26,40 @@ const GameScreen = () => {
     });
 
     const [gameCards, setGameCards] = useState(_gameCards);
+    const [selectedCard, setSelectedCard] = useState(-1);
 
-    const flipUnpairedCards = (index1: number, index2: number) => {
-        setGameCards((cards: any)  => {
-            const _cards = [...cards];
-            
-            const _card1 = {
-                ...cards[index1],
-                isShown: false
-            };
-            
-            const _card2 = {
-                ...cards[index2],
-                isShown: false
-            };
+    const hideCards = (index1: number, index2: number) => {
+        const cards = [...gameCards];
 
-            _cards[index1] = _card1;
-            _cards[index2] = _card2;
-            
-            return _cards;
-        })
+        cards[index1] = {
+            ...cards[index1],
+            isShown: false
+        };
+
+        cards[index2] = {
+            ...cards[index2],
+            isShown: false
+        };
+
+        setTimeout(() => {
+            setGameCards(cards);
+        }, 2000);
+        
+        setSelectedCard(-1);
     }
+
+    const showCard = (index: number) => {
+        const cards = [...gameCards];
+        cards[index].isShown = true;
+
+        setGameCards(cards);
+
+        if(selectedCard !== -1) {
+            hideCards(index, selectedCard);
+        } else {
+            setSelectedCard(index);
+        }
+    };
 
     return (
         <div className={styles.gameScreen}>
@@ -51,13 +68,12 @@ const GameScreen = () => {
                 {
                     gameCards.map((item, index) => {
                         return <Card 
+                            cardIndex={index}
+                            hideCards={hideCards}
                             id={item.id} 
                             isShown={item.isShown}
-                            isPaired={item.isPaired}
-                            setGameCards={setGameCards}
-                            flipUnpairedCards={flipUnpairedCards}
-                            cardIndex={index}
                             key={index}
+                            showCard={showCard}
                         />
                     })
                 }
