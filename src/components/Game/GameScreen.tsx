@@ -69,7 +69,6 @@ const GameScreen = () => {
                     gameCards.map((item, index) => {
                         return <Card 
                             cardIndex={index}
-                            hideCards={hideCards}
                             id={item.id} 
                             isShown={item.isShown}
                             key={index}

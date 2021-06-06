@@ -5,11 +5,10 @@ type CardProps = {
     id: number;
     isShown: boolean;
     cardIndex: number;
-    hideCards: (index1: number, index2: number) => void;
     showCard: (index: number) => void;
 }
 
-const Card = ({id, isShown, cardIndex, showCard, hideCards}: CardProps) => {
+const Card = ({id, isShown, cardIndex, showCard}: CardProps) => {
 
     const noResponse = {
         name: '',
