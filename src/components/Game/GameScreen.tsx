@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { getRandomArray } from '../helpers/getRandomArray';
 import Card from './Card';
 import styles from './GameScreen.module.scss';
-
-export type card = {
-
-};
+import Scoreboard from './Scoreboard';
 
 const GameScreen = () => {
     const randomSprites = getRandomArray();
@@ -27,6 +24,7 @@ const GameScreen = () => {
 
     const [gameCards, setGameCards] = useState(_gameCards);
     const [selectedCard, setSelectedCard] = useState(-1);
+    const [score, setScore] = useState(0);
 
     const hideCards = (index1: number, index2: number) => {
         const cards = [...gameCards];
@@ -54,16 +52,28 @@ const GameScreen = () => {
 
         setGameCards(cards);
 
-        if(selectedCard !== -1) {
-            hideCards(index, selectedCard);
+        setSelectedCard(index);
+        if(cards[selectedCard]?.id === cards[index].id) {
+            setScore(score+1);
+            setPaired(index);
+            setPaired(selectedCard);
+            setSelectedCard(-1);
         } else {
-            setSelectedCard(index);
+            if(selectedCard !== -1) {
+                hideCards(index, selectedCard);
+            }
         }
+    };
+
+    const setPaired = (index: number) => {
+        const cards = [...gameCards];
+        cards[index].isPaired = true;
+
+        setGameCards(cards);
     };
 
     return (
         <div className={styles.gameScreen}>
-            <h1>GameScreen</h1>
             <div className={styles.gameBoard}>
                 {
                     gameCards.map((item, index) => {
@@ -71,11 +81,15 @@ const GameScreen = () => {
                             cardIndex={index}
                             id={item.id} 
                             isShown={item.isShown}
+                            isPaired={item.isPaired}
                             key={index}
                             showCard={showCard}
                         />
                     })
                 }
+            </div>
+            <div className={styles.scoreboard}>
+                <Scoreboard score={score} />
             </div>
         </div>
     );

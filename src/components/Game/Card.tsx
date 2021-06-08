@@ -5,10 +5,11 @@ type CardProps = {
     id: number;
     isShown: boolean;
     cardIndex: number;
+    isPaired: boolean;
     showCard: (index: number) => void;
 }
 
-const Card = ({id, isShown, cardIndex, showCard}: CardProps) => {
+const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
 
     const noResponse = {
         name: '',
@@ -31,6 +32,9 @@ const Card = ({id, isShown, cardIndex, showCard}: CardProps) => {
     };
 
     const handleToggle = () => {
+        if(isPaired) {
+            return;
+        }
         showCard(cardIndex);
     };
 

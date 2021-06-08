@@ -1,14 +1,18 @@
 .gameScreen {
-    align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    margin-top: 4%;
 
-    .gameBoard{
+    .gameBoard {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
         width: 50%;
+    }
+
+    .scoreboard {
+        width: 16%;
     }
 }
