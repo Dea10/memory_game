@@ -2,13 +2,20 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-    buttonLabel: string;
+    label: string;
+    color: string;
+    onClick: () => void;
 }
 
-const Button = ({ buttonLabel }: ButtonProps) => {
+const Button = ({ label, color, onClick }: ButtonProps) => {
+
+    const divStyle = {
+        backgroundColor: color
+    };
+
     return (
-        <div className={styles.button}>
-            <span>{buttonLabel}</span>
+        <div className={styles.button} style={divStyle} onClick={onClick}>
+            <span>{label}</span>
         </div>
     );
 };
