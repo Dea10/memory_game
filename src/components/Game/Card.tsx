@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { BoardContext } from './GameScreen';
 import styles from './Card.module.scss';
 
 type CardProps = {
@@ -16,6 +17,7 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
         imgUrl: ''
     }
     const [pokemon, setPokemon] = useState(noResponse);
+    const boardState = useContext(BoardContext);
 
     const getPokemon = async () => {
         const baseUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -32,7 +34,7 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
     };
 
     const handleToggle = () => {
-        if(isPaired) {
+        if(isPaired || !boardState.isActive) {
             return;
         }
         showCard(cardIndex);

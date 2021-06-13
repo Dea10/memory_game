@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import Button from '../Buttons/Button';
 import { getRandomArray } from '../helpers/getRandomArray';
 import Card from './Card';
 import styles from './GameScreen.module.scss';
 import Scoreboard from './Scoreboard';
+
+export const BoardContext = React.createContext({
+    isActive: false, 
+    isStarted: false,
+    isFinished: false
+});
 
 const GameScreen = () => {
     const randomSprites = getRandomArray();
@@ -25,6 +32,10 @@ const GameScreen = () => {
     const [gameCards, setGameCards] = useState(_gameCards);
     const [selectedCard, setSelectedCard] = useState(-1);
     const [score, setScore] = useState(0);
+    const [isActive, setIsActive] = useState(false);
+    const [isStarted, setIsStarted] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
+    
 
     const hideCards = (index1: number, index2: number) => {
         const cards = [...gameCards];
@@ -41,6 +52,7 @@ const GameScreen = () => {
 
         setTimeout(() => {
             setGameCards(cards);
+            setIsActive(true);
         }, 2000);
         
         setSelectedCard(-1);
@@ -60,6 +72,7 @@ const GameScreen = () => {
             setSelectedCard(-1);
         } else {
             if(selectedCard !== -1) {
+                setIsActive(false);
                 hideCards(index, selectedCard);
             }
         }
@@ -72,26 +85,41 @@ const GameScreen = () => {
         setGameCards(cards);
     };
 
+    const handleStart = () => {
+        setIsActive(true);
+        setIsStarted(true);
+    }
+
     return (
-        <div className={styles.gameScreen}>
-            <div className={styles.gameBoard}>
-                {
-                    gameCards.map((item, index) => {
-                        return <Card 
-                            cardIndex={index}
-                            id={item.id} 
-                            isShown={item.isShown}
-                            isPaired={item.isPaired}
-                            key={index}
-                            showCard={showCard}
+        <BoardContext.Provider value={{isActive, isStarted, isFinished}}>
+            <div className={styles.gameScreen}>
+                <div className={styles.gameBoard}>
+                    {
+                        gameCards.map((item, index) => {
+                            return <Card 
+                                cardIndex={index}
+                                id={item.id} 
+                                isShown={item.isShown}
+                                isPaired={item.isPaired}
+                                key={index}
+                                showCard={showCard}
+                            />
+                        })
+                    }
+                </div>
+                <div className={styles.scoreboard}>
+                    <Scoreboard score={score} />
+                    {
+                        !isStarted &&
+                        <Button
+                            label='Start'
+                            color='#ffcb05'
+                            onClick={handleStart}
                         />
-                    })
-                }
+                    }
+                </div>
             </div>
-            <div className={styles.scoreboard}>
-                <Scoreboard score={score} />
-            </div>
-        </div>
+        </BoardContext.Provider>
     );
 };
 
