@@ -3,6 +3,7 @@ import Button from '../Buttons/Button';
 import { getRandomArray } from '../helpers/getRandomArray';
 import Card from './Card';
 import styles from './GameScreen.module.scss';
+import RankingForm from './RankingForm';
 import Scoreboard from './Scoreboard';
 
 export const BoardContext = React.createContext({
@@ -122,6 +123,9 @@ const GameScreen = () => {
                             color='#ffcb05'
                             onClick={handleStart}
                         />
+                    }
+                    {
+                        isFinished && <RankingForm />
                     }
                 </div>
             </div>
