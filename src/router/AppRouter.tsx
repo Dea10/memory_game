@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import GameScreen from '../components/Game/GameScreen';
 import HomeScreen from '../components/Home/HomeScreen';
-import RankingScreen from '../components/RankingScreen';
+import RankingScreen from '../components/RankingScreen/RankingScreen';
 
 const AppRouter = () => {
     return (
