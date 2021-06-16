@@ -34,7 +34,7 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
     };
 
     const handleToggle = () => {
-        if(isPaired || !boardState.isActive) {
+        if(isPaired || !boardState.isActive || isShown) {
             return;
         }
         showCard(cardIndex);
