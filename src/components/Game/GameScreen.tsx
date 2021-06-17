@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Buttons/Button';
 import { getRandomArray } from '../helpers/getRandomArray';
 import Card from './Card';
@@ -36,7 +36,8 @@ const GameScreen = () => {
     const [isActive, setIsActive] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
-    
+    const [time, setTime] = useState(0);
+    const [nickname, setNickname] = useState('');
 
     const hideCards = (index1: number, index2: number) => {
         const cards = [...gameCards];
@@ -115,7 +116,10 @@ const GameScreen = () => {
                     }
                 </div>
                 <div className={styles.scoreboard}>
-                    <Scoreboard score={score} />
+                    <Scoreboard 
+                        score={score} 
+                        setTime={setTime}
+                    />
                     {
                         !isStarted &&
                         <Button
@@ -125,7 +129,10 @@ const GameScreen = () => {
                         />
                     }
                     {
-                        isFinished && <RankingForm />
+                        true && 
+                        <RankingForm
+                            time={time}
+                        />
                     }
                 </div>
             </div>

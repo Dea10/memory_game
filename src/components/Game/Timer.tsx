@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BoardContext } from './GameScreen';
 
+type TimerProps = {
+    setTime: (secs: number) => void;
+};
+
 let interval: any;
-const Timer = () => {
+const Timer = ({ setTime }: TimerProps) => {
 
     const [secs, setSecs] = useState(0);
     const [mins, setMins] = useState(0);
@@ -24,8 +28,8 @@ const Timer = () => {
 
     useEffect(() => {
         if(boardState.isFinished) {
-            console.log('isFinished Timer: ', boardState.isFinished);
             clearInterval(interval);
+            setTime((mins * 60) + secs);
         }
     }, [boardState.isFinished]);
 

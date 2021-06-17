@@ -5,13 +5,16 @@ import Timer from './Timer';
 
 type ScoreboardProps = {
     score: number;
+    setTime: (secs: number) => void;
 }
 
-const Scoreboard = ({ score } : ScoreboardProps) => {
+const Scoreboard = ({ score, setTime } : ScoreboardProps) => {
 
     return (
         <div className={styles.scoreboard}>
-            <Timer />
+            <Timer 
+                setTime={setTime}
+            />
             <h3>Score: {score}</h3>
         </div>
     );

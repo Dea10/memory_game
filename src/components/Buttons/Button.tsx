@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 type ButtonProps = {
     label: string;
     color: string;
-    onClick: () => void;
+    onClick?: (smt?: any) => void;
 }
 
 const Button = ({ label, color, onClick }: ButtonProps) => {
