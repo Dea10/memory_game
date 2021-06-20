@@ -1,43 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../Buttons/Button';
-import { getRandomArray } from '../helpers/getRandomArray';
+import { getGameCards } from '../helpers/getGameCards';
 import Card from './Card';
 import styles from './GameScreen.module.scss';
 import RankingForm from './RankingForm';
 import Scoreboard from './Scoreboard';
 
 export const BoardContext = React.createContext({
-    isActive: false, 
+    isActive: false,
     isStarted: false,
     isFinished: false
 });
 
 const GameScreen = () => {
-    const randomSprites = getRandomArray();
-    const duplicatedRandomSprites = [...randomSprites, ...randomSprites];
-    const positionsArray = getRandomArray(duplicatedRandomSprites.length, duplicatedRandomSprites.length, true);
-    
-    const gameArray = [...duplicatedRandomSprites];
-    for(let i = 0; i < duplicatedRandomSprites.length; i++) {
-        gameArray[i] = duplicatedRandomSprites[positionsArray[i]];
-    }
-
-    const _gameCards = gameArray.map(item => {
-        return {
-            id: item,
-            isShown: false,
-            isPaired: false
-        }
-    });
-
-    const [gameCards, setGameCards] = useState(_gameCards);
+    const [gameCards, setGameCards] = useState(getGameCards);
     const [selectedCard, setSelectedCard] = useState(-1);
     const [score, setScore] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [time, setTime] = useState(0);
-    const [nickname, setNickname] = useState('');
 
     const hideCards = (index1: number, index2: number) => {
         const cards = [...gameCards];
@@ -56,7 +39,7 @@ const GameScreen = () => {
             setGameCards(cards);
             setIsActive(true);
         }, 2000);
-        
+
         setSelectedCard(-1);
     }
 
@@ -67,19 +50,19 @@ const GameScreen = () => {
         setGameCards(cards);
 
         setSelectedCard(index);
-        if(cards[selectedCard]?.id === cards[index].id) {
-            setScore(score+1);
+        if (cards[selectedCard]?.id === cards[index].id) {
+            setScore(score + 1);
             console.log('score: ', score);
             setPaired(index);
             setPaired(selectedCard);
             setSelectedCard(-1);
-            if(score+1 === cards.length/2) {
+            if (score + 1 === cards.length / 2) {
                 console.log('Finished game');
                 setIsFinished(true);
                 setIsActive(false);
             }
         } else {
-            if(selectedCard !== -1) {
+            if (selectedCard !== -1) {
                 setIsActive(false);
                 hideCards(index, selectedCard);
             }
@@ -99,14 +82,20 @@ const GameScreen = () => {
     }
 
     return (
-        <BoardContext.Provider value={{isActive, isStarted, isFinished}}>
+        <BoardContext.Provider value={{ isActive, isStarted, isFinished }}>
             <div className={styles.gameScreen}>
+                <Link className={styles.link} to="/home">
+                    <Button
+                        label='Home'
+                        color='#4CC0A6'
+                    />
+                </Link>
                 <div className={styles.gameBoard}>
                     {
                         gameCards.map((item, index) => {
-                            return <Card 
+                            return <Card
                                 cardIndex={index}
-                                id={item.id} 
+                                id={item.id}
                                 isShown={item.isShown}
                                 isPaired={item.isPaired}
                                 key={index}
@@ -116,8 +105,8 @@ const GameScreen = () => {
                     }
                 </div>
                 <div className={styles.scoreboard}>
-                    <Scoreboard 
-                        score={score} 
+                    <Scoreboard
+                        score={score}
                         setTime={setTime}
                     />
                     {
@@ -129,7 +118,7 @@ const GameScreen = () => {
                         />
                     }
                     {
-                        true && 
+                        isFinished &&
                         <RankingForm
                             time={time}
                         />

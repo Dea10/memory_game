@@ -4,6 +4,10 @@
     justify-content: center;
     margin-top: 4%;
 
+    .link {
+        text-decoration: none;
+    }
+
     .gameBoard {
         display: flex;
         flex-direction: row;
