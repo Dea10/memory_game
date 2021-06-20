@@ -24,7 +24,7 @@ const RankingScreen = () => {
             <h2>Ranking</h2>
             <ul className={styles.ranking}>
                 {
-                    ranking.sort((a: { time: number; }, b: { time: number; }) => (a.time - b.time)).map((player: { nickname: string; time: number; }, idx: number) => {
+                    ranking.sort((a: { time: number; }, b: { time: number; }) => (a.time - b.time)).slice(0, 4).map((player: { nickname: string; time: number; }, idx: number) => {
                         return (
                             <li key={idx}>
                                 {idx + 1} - {player.nickname}
