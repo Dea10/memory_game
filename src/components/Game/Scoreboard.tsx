@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Button from '../Buttons/Button';
+import React from 'react';
 import styles from './Scoreboard.module.scss';
 import Timer from './Timer';
 

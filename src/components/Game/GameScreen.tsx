@@ -22,6 +22,17 @@ const GameScreen = () => {
     const [isFinished, setIsFinished] = useState(false);
     const [time, setTime] = useState(0);
 
+    const restart = () => {
+        const aux = getGameCards();
+        setGameCards(aux);
+        setSelectedCard(-1);
+        setScore(0);
+        setIsActive(false);
+        setIsStarted(false);
+        setIsFinished(false);
+        setTime(0);
+    }
+
     const hideCards = (index1: number, index2: number) => {
         const cards = [...gameCards];
 
@@ -121,6 +132,14 @@ const GameScreen = () => {
                         isFinished &&
                         <RankingForm
                             time={time}
+                        />
+                    }
+                    {
+                        isStarted &&
+                        <Button
+                            label='Restart'
+                            color='red'
+                            onClick={restart}
                         />
                     }
                 </div>

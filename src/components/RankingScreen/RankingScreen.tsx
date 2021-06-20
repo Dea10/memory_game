@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './RankingScreen.module.scss';
 
 const RankingScreen = () => {
     
@@ -11,19 +12,20 @@ const RankingScreen = () => {
     const ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
 
     return (
-        <div>
-            <h3>Ranking Screen</h3>
+        <div className={styles.rankingScreen}>
+            <h2>Ranking</h2>
+            <ul className={styles.ranking}>
             {
                 ranking.sort((a: { time: number; }, b: { time: number; }) => (a.time-b.time)).map((player: { nickname: string; time: number; }, idx: number) => {
                     return(
-                        <div>
-                            {/* TODO: Create a player card component */}
-                            <h3>{`${idx+1} - ${player.nickname}`}</h3>
-                            <p>{`Time: ${player.time}`}</p>
-                        </div>
+                            <li key={idx}>
+                                {idx+1} - {player.nickname}
+                                <p>{`Time: ${player.time}`}</p>
+                            </li>
                     )
                 })
             }
+            </ul>
         </div>
     );
 };
