@@ -3,6 +3,10 @@
     flex-direction: column;
     align-items: center;
 
+    .link {
+        text-decoration: none;
+    }
+
     .ranking {
         display: flex;
         flex-direction: column;

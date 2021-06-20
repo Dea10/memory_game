@@ -4,6 +4,7 @@ import styles from './RankingForm.module.scss';
 
 type RankingFormProps = {
     time: number;
+    setIsRanked: (value: boolean) => void;
 }
 
 type player = {
@@ -11,7 +12,7 @@ type player = {
     time: number;
 }
 
-const RankingForm = ({ time }: RankingFormProps) => {
+const RankingForm = ({ time, setIsRanked }: RankingFormProps) => {
 
     const [nickname, setNickname] = useState('');
 
@@ -21,6 +22,8 @@ const RankingForm = ({ time }: RankingFormProps) => {
 
     const saveRecord = (event: any) => {
         event.preventDefault();
+
+        setIsRanked(true);
 
         const newPlayer = {
             nickname,

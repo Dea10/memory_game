@@ -21,7 +21,9 @@ const GameScreen = () => {
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [time, setTime] = useState(0);
+    const [isRanked, setIsRanked] = useState(false);
 
+    // restart is not working, do not know why :(
     const restart = () => {
         const aux = getGameCards();
         setGameCards(aux);
@@ -31,6 +33,7 @@ const GameScreen = () => {
         setIsStarted(false);
         setIsFinished(false);
         setTime(0);
+        setIsRanked(false);
     }
 
     const hideCards = (index1: number, index2: number) => {
@@ -129,9 +132,10 @@ const GameScreen = () => {
                         />
                     }
                     {
-                        isFinished &&
+                        isFinished && !isRanked &&
                         <RankingForm
                             time={time}
+                            setIsRanked={setIsRanked}
                         />
                     }
                     {
