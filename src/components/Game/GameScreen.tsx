@@ -26,7 +26,7 @@ const GameScreen = () => {
     // restart is not working, do not know why :(
     const restart = () => {
         const aux = getGameCards();
-        setGameCards(aux);
+        setGameCards([...aux]);
         setSelectedCard(-1);
         setScore(0);
         setIsActive(false);
@@ -139,12 +139,13 @@ const GameScreen = () => {
                         />
                     }
                     {
-                        isStarted &&
-                        <Button
-                            label='Restart'
-                            color='red'
-                            onClick={restart}
-                        />
+                        // Restart button removed until it works
+                        // isStarted &&
+                        // <Button
+                        //     label='Restart'
+                        //     color='red'
+                        //     onClick={restart}
+                        // />
                     }
                 </div>
             </div>

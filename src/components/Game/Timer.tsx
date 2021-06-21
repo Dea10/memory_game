@@ -30,6 +30,7 @@ const Timer = ({ setTime }: TimerProps) => {
         if(boardState.isFinished) {
             clearInterval(interval);
             setTime((mins * 60) + secs);
+            // seems that never gets into 
         }
     }, [boardState.isFinished]);
 
