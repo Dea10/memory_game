@@ -2,7 +2,8 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    height: 25vh;
 
     .link {
         text-decoration: none;

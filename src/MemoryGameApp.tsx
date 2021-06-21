@@ -1,10 +1,10 @@
 import React from 'react';
 import AppRouter from './router/AppRouter';
-
+import styles from './MemoryGameApp.module.scss';
 
 const MemoryGameApp = () => {
     return (
-        <div>
+        <div className={styles.app}>
             <AppRouter />
         </div>
     );
