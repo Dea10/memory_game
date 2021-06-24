@@ -52,13 +52,13 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
             {
                 isShown ?
 
-                <div>
+                <div className={styles.front}>
                     <img src={pokemon.imgUrl} alt={pokemon.name} />
                     <small>{pokemon.name}</small>
                 </div>
                 :
-                <div>
-                    <small>back</small>
+                <div className={styles.back}>
+                    <img src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'} alt='pokeball' />
                 </div>
             }
         </div>

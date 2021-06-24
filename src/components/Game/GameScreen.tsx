@@ -52,7 +52,7 @@ const GameScreen = () => {
         setTimeout(() => {
             setGameCards(cards);
             setIsActive(true);
-        }, 2000);
+        }, 1000);
 
         setSelectedCard(-1);
     }

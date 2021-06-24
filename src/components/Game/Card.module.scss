@@ -1,5 +1,6 @@
 .card {
-    div {
+    .front {
+        background-color: #DEFDE0;
         align-items: center;
         border: black 1px solid;
         border-radius: 8px;
@@ -15,5 +16,18 @@
             border-bottom: black 1px solid;
             margin-bottom: 8px;
         }
+    }
+
+    .back {
+        background-color: white;
+        border: black 1px solid;
+        border-radius: 8px;
+        display: flex;
+        margin: 2px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 125px;
+        height: 125px;    
     }
 }
