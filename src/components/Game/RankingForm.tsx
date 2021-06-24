@@ -43,8 +43,8 @@ const RankingForm = ({ time, setIsRanked }: RankingFormProps) => {
         >
             <input type='text' className='form-control' onChange={handleOnChange} />
             <Button 
-                label='submit'
-                color='black'
+                label='Send record!'
+                color='#FF5054'
                 onClick={saveRecord}
             />
         </form>

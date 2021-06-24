@@ -149,6 +149,17 @@ const GameScreen = () => {
                         //     onClick={restart}
                         // />
                     }
+                    {
+                        isRanked &&
+                        <Link className={styles.link} to="/ranking">
+                            <div>
+                                <Button 
+                                    label='Ranking'
+                                    color='#FF5054'
+                                />
+                            </div>
+                        </Link>
+                    }
                 </div>
             </div>
         </BoardContext.Provider>
