@@ -98,12 +98,14 @@ const GameScreen = () => {
     return (
         <BoardContext.Provider value={{ isActive, isStarted, isFinished }}>
             <div className={styles.gameScreen}>
-                <Link className={styles.link} to="/home">
-                    <Button
-                        label='Home'
-                        color='#4CC0A6'
-                    />
-                </Link>
+                <div>
+                    <Link className={styles.link} to="/home">
+                        <Button
+                            label='Home'
+                            color='#4CC0A6'
+                        />
+                    </Link>
+                </div>
                 <div className={styles.gameBoard}>
                     {
                         gameCards.map((item, index) => {
