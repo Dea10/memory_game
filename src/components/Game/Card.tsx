@@ -10,6 +10,25 @@ type CardProps = {
     showCard: (index: number) => void;
 }
 
+// TODO: fix any
+const colors: any = {
+	fire: '#FDDFDF',
+	grass: '#DEFDE0',
+	electric: '#FCF7DE',
+	water: '#DEF3FD',
+	ground: '#f4e7da',
+	rock: '#d5d5d4',
+	fairy: '#fceaff',
+	poison: '#98d7a5',
+	bug: '#f8d5a3',
+	dragon: '#97b3e6',
+	psychic: '#eaeda1',
+	flying: '#F5F5F5',
+	fighting: '#E6E0D4',
+	normal: '#F5F5F5',
+    ghost: '#C9C7EE'
+};
+
 const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
 
     const noResponse = {
@@ -17,12 +36,13 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
         imgUrl: ''
     }
     const [pokemon, setPokemon] = useState(noResponse);
+    const [frontColor, setFrontColor] = useState({backgroundColor: 'blanchedalmond'});
     const boardState = useContext(BoardContext);
 
     const getPokemon = async () => {
         const baseUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
         const response = await fetch(baseUrl);
-        const {name, sprites} = await response.json();
+        const {name, sprites, types} = await response.json();
         const {front_default: imgUrl} = sprites;
 
         const pokemon = {
@@ -30,7 +50,13 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
             imgUrl
         }
 
+        const type: string = types[0]?.type.name;
+        const backgroundColorStyle = {
+            backgroundColor: colors[type]
+        }
+
         setPokemon(pokemon);
+        setFrontColor(backgroundColorStyle);
     };
 
     const handleToggle = () => {
@@ -52,7 +78,7 @@ const Card = ({id, isShown, cardIndex, isPaired, showCard}: CardProps) => {
             {
                 isShown ?
 
-                <div className={styles.front}>
+                <div className={styles.front} style={frontColor}>
                     <img src={pokemon.imgUrl} alt={pokemon.name} />
                     <small>{pokemon.name}</small>
                 </div>
