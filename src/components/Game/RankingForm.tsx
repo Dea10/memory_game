@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../Buttons/Button';
 import styles from './RankingForm.module.scss';
+import axios from 'axios';
 
 type RankingFormProps = {
     time: number;
@@ -26,14 +27,16 @@ const RankingForm = ({ time, setIsRanked }: RankingFormProps) => {
         setIsRanked(true);
 
         const newPlayer = {
-            nickname,
+            name: nickname,
             time
         }
 
-        const localRanking = JSON.parse(localStorage.getItem('ranking') || '[]');
-        localRanking.push(newPlayer);
+        // const localRanking = JSON.parse(localStorage.getItem('ranking') || '[]');
+        // localRanking.push(newPlayer);
 
-        localStorage.setItem('ranking', JSON.stringify(localRanking));
+        // localStorage.setItem('ranking', JSON.stringify(localRanking));
+
+        axios.post('http://localhost:8080/api/players', newPlayer).then( resp => console.log(resp)).catch( err => console.log(err));
     };
 
     return (

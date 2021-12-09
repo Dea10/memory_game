@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Buttons/Button';
+import { getRanking } from '../helpers/getRanking';
 import styles from './RankingScreen.module.scss';
 
 const RankingScreen = () => {
+    const [ranking, setRanking] = useState([]);
 
-    const arr = [1, 2, 3, 4, 5];
-    const mockData = arr.map(item => ({
-        nickname: `player0${item}`,
-        time: Math.floor(Math.random() * 10)
-    }));
-
-    const ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
+    useEffect(() => {
+        getRanking().then(setRanking);
+    }, [])
 
     return (
         <div className={styles.rankingScreen}>
@@ -25,11 +23,11 @@ const RankingScreen = () => {
             </div>
             <ul className={styles.ranking}>
                 {
-                    ranking.sort((a: { time: number; }, b: { time: number; }) => (a.time - b.time)).slice(0, 4).map((player: { nickname: string; time: number; }, idx: number) => {
+                    ranking.sort((a: { time: number; }, b: { time: number; }) => (a.time - b.time)).slice(0, 4).map((player: { name: string; time: number; }, idx: number) => {
                         return (
                             // TODO: Create a card component
                             <li key={idx}>
-                                {idx + 1} - {player.nickname}
+                                {idx + 1} - {player.name}
                                 <p>{`Time: ${player.time} sec`}</p>
                             </li>
                         )
