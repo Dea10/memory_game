@@ -7,6 +7,7 @@ import {
 import GameScreen from '../components/Game/GameScreen';
 import HomeScreen from '../components/Home/HomeScreen';
 import RankingScreen from '../components/RankingScreen/RankingScreen';
+import Footer from '../components/Footer/Footer';
 
 const AppRouter = () => {
     return (
@@ -27,6 +28,7 @@ const AppRouter = () => {
                     </Route>
                 </Switch>
             </div>
+            <Footer />
         </Router>
     );
 };

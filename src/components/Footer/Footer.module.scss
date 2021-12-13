@@ -1,0 +1,21 @@
+.footer {
+    background-color: #355F70;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #A67E35;
+    bottom: 0;
+    color: white;
+    display: flex;
+    font-size: small;
+    justify-content: flex-end;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+
+    .link {
+        color: white;
+        height: 25px;
+        margin: 0px 30px;
+        width: 25px;
+    }
+}
