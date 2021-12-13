@@ -1,0 +1,19 @@
+.card {
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  margin: 4px;
+  width: 350px;
+
+  .position {
+    border-right: 1px solid white;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 15%;
+  }
+
+  .playerName {
+    padding: 10px;
+  }
+}

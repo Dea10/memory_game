@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const getRanking = async () => {
-    const resp = await axios.get('http://localhost:8080/api/players');
+    const resp = await axios.get('https://memory-game01.herokuapp.com/api/players');
     return resp.data.players;
 }

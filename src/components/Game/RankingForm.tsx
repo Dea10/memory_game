@@ -31,12 +31,7 @@ const RankingForm = ({ time, setIsRanked }: RankingFormProps) => {
             time
         }
 
-        // const localRanking = JSON.parse(localStorage.getItem('ranking') || '[]');
-        // localRanking.push(newPlayer);
-
-        // localStorage.setItem('ranking', JSON.stringify(localRanking));
-
-        axios.post('http://localhost:8080/api/players', newPlayer).then( resp => console.log(resp)).catch( err => console.log(err));
+        axios.post('https://memory-game01.herokuapp.com/api/players', newPlayer).then( resp => console.log(resp)).catch( err => console.log(err));
     };
 
     return (
