@@ -3,7 +3,7 @@ export const getRandomArray = (limit: number = 10, apiLimit: number = 151, inclu
     const arr: number[] = [];
     
     while(arr.length !== limit) {
-        const newElement = Math.floor(Math.random() * (apiLimit + zero));
+        const newElement = Math.floor(Math.random() * (apiLimit) + zero);
         if(!arr.includes(newElement)) {
             arr.push(newElement);
         }        

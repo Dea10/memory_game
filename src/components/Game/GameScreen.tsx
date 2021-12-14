@@ -66,12 +66,10 @@ const GameScreen = () => {
         setSelectedCard(index);
         if (cards[selectedCard]?.id === cards[index].id) {
             setScore(score + 1);
-            console.log('score: ', score);
             setPaired(index);
             setPaired(selectedCard);
             setSelectedCard(-1);
             if (score + 1 === cards.length / 2) {
-                console.log('Finished game');
                 setIsFinished(true);
                 setIsActive(false);
             }
